@@ -34,4 +34,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: voyager.bin
-          path: zsa_firmware/.build/*.bin
+          path: qmk_firmware/.build/*.bin
