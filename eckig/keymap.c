@@ -29,6 +29,7 @@
 #include "keymap_croatian.h"
 #include "keymap_turkish_q.h"
 #include "keymap_slovak.h"
+#include "features/custom_shift_keys.h"
 
 #define KC_MAC_UNDO LGUI(KC_Z)
 #define KC_MAC_CUT LGUI(KC_X)
@@ -57,6 +58,17 @@ enum custom_keycodes {
   DE_LSPO,
   DE_RSPC,
 };
+
+
+// Custom shift keys, see "https://getreuer.info/posts/keyboards/custom-shift-keys/index.html"
+const custom_shift_key_t custom_shift_keys[] = {
+  {DE_SCLN, DE_COLN}, // ; :
+  {KC_COMM, DE_LABK}, // , <
+  {KC_DOT , DE_RABK}, // . >
+  {DE_QUOT, DE_DQUO}, // ' "
+  {DE_SLSH, DE_QUES}, // / ?
+};
+uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
 
 
@@ -95,6 +107,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_custom_shift_keys(keycode, record)) { return false; }
+
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {

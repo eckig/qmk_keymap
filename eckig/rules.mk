@@ -7,3 +7,4 @@ ORYX_ENABLE = yes
 RGB_MATRIX_CUSTOM_KB = yes
 SPACE_CADET_ENABLE = no
 SRC = matrix.c
+SRC += features/custom_shift_keys.c
