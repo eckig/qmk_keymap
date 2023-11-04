@@ -40,11 +40,12 @@ bool process_custom_shift_keys(uint16_t keycode, keyrecord_t *record) {
 #else
     if ((mods | get_weak_mods()) & MOD_MASK_SHIFT) {  // Shift is held.
 #endif  // NO_ACTION_ONESHOT
+
       // Continue default handling if this is a tap-hold key being held.
-      if ((IS_QK_MOD_TAP(keycode) || IS_QK_LAYER_TAP(keycode)) &&
-          record->tap.count == 0) {
-        return true;
-      }
+//      if ((IS_QK_MOD_TAP(keycode) || IS_QK_LAYER_TAP(keycode)) &&
+//          record->tap.count == 0) {
+//        return true;
+//      }
 
       // Search for a custom shift key whose keycode is `keycode`.
       for (int i = 0; i < NUM_CUSTOM_SHIFT_KEYS; ++i) {
