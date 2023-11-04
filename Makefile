@@ -1,5 +1,5 @@
 QMK_REPO ?= zsa/qmk_firmware
-QMK_BRANCH ?= firmware22
+QMK_BRANCH ?= firmware23
 
 .PHONY: build
 build: qmk_firmware/keyboards/voyager/keymaps/eckig  qmk_firmware/.build/voyager.bin
