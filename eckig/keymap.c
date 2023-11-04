@@ -46,11 +46,11 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    DE_DLR,         KC_F5,          KC_F6,          KC_F7,          KC_F8,          KC_TRANSPARENT,                                 TG(2),          KC_LALT,        KC_PSCREEN,     KC_TRANSPARENT, ST_MACRO_0,     DE_EXLM,        
-    MT(MOD_LGUI, KC_TAB),DE_SCLN,        DE_MORE,        KC_DOT,         KC_P,           DE_Y,                                           KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           DE_SLSH,        
-    MT(MOD_LCTL, KC_ESCAPE),KC_A,           KC_O,           KC_E,           KC_U,           KC_I,                                           KC_D,           KC_H,           KC_T,           KC_N,           KC_S,           DE_MINS,        
-    KC_LSHIFT,      DE_QUOT,        KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           DE_Z,           KC_RSHIFT,      
-                                                    LT(3,KC_BSPACE),LT(1,KC_DELETE),                                KC_ENTER,       LT(3,KC_SPACE)
+    DE_DLR,                  KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_TRANSPARENT,               TG(2),    KC_LALT,  KC_PSCR, C_TRANSPARENT, ST_MACRO_0, DE_EXLM,
+    MT(MOD_LGUI, KC_TAB),    DE_SCLN,  KC_COMM,  KC_DOT,   KC_P,     DE_Y,                         KC_F,     KC_G,     KC_C,    KC_R,          KC_L,       DE_SLSH,
+    MT(MOD_LCTL, KC_ESCAPE), KC_A,     KC_O,     KC_E,     KC_U,     KC_I,                         KC_D,     KC_H,     KC_T,    KC_N,          KC_S,       DE_MINS,
+    KC_LSFT,                 DE_QUOT,  KC_Q,     KC_J,     KC_K,     KC_X,                         KC_B,     KC_M,     KC_W,    KC_V,          DE_Z,       KC_RSFT,
+                                                    LT(3,KC_BSPC), LT(1,KC_DELETE),                KC_ENTER,       LT(3,KC_SPACE)
   ),
   [1] = LAYOUT_voyager(
     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_voyager(
     RGB_TOG,        TOGGLE_LAYER_COLOR,RGB_MOD,        RGB_SLD,        RGB_VAD,        RGB_VAI,                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RESET,          
     KC_TRANSPARENT, KC_TRANSPARENT, KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_AUDIO_MUTE,  KC_TRANSPARENT,                                 KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_TRANSPARENT,                                 KC_PGDOWN,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE,KC_TRANSPARENT,                                 KC_PGDN,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, HSV_0_255_255,  HSV_74_255_255, HSV_169_255_255,                                KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
