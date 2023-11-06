@@ -3,6 +3,10 @@
 #include "keymap_german.h"
 #include "features/custom_shift_keys.h"
 
+// super alt-tab
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
+
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   HSV_0_255_255,
@@ -10,6 +14,7 @@ enum custom_keycodes {
   HSV_169_255_255,
   DE_LSPO,
   DE_RSPC,
+  ALT_TAB = SAFE_RANGE,
 };
 
 // Custom shift keys, see "https://getreuer.info/posts/keyboards/custom-shift-keys/index.html"
@@ -24,7 +29,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    DE_DLR,                  KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_LGUI,                      TG(2),    KC_LALT,  KC_PSCR, KC_TRANSPARENT, KC_TRANSPARENT, DE_EXLM,
+    DE_DLR,                  KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_LGUI,                      TG(2),    KC_LALT,  KC_PSCR, KC_TRANSPARENT, ALT_TAB,        DE_EXLM,
     MT(MOD_LGUI, KC_TAB),    DE_SCLN,  KC_COMM,  KC_DOT,   KC_P,     DE_Y,                         KC_F,     KC_G,     KC_C,    KC_R,           KC_L,           DE_SLSH,
     MT(MOD_LCTL, KC_ESCAPE), KC_A,     KC_O,     KC_E,     KC_U,     KC_I,                         KC_D,     KC_H,     KC_T,    KC_N,           KC_S,           MT(MOD_RCTL,DE_MINS),
     KC_LSFT,                 DE_QUOT,  KC_Q,     KC_J,     KC_K,     KC_X,                         KC_B,     KC_M,     KC_W,    KC_V,           DE_Z,           KC_RSFT,
@@ -58,6 +63,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_custom_shift_keys(keycode, record)) { return false; }
 
   switch (keycode) {
+    case ALT_TAB:
+      if (record->event.pressed) {
+        if (!is_alt_tab_active) {
+          is_alt_tab_active = true;
+          register_code(KC_LALT);
+        }
+        alt_tab_timer = timer_read();
+        register_code(KC_TAB);
+      } else {
+        unregister_code(KC_TAB);
+      }
+      break;
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
@@ -83,5 +100,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
   }
   return true;
+}
+
+void matrix_scan_user(void) {
+  if (is_alt_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 1000) {
+      unregister_code(KC_LALT);
+      is_alt_tab_active = false;
+    }
+  }
 }
 
