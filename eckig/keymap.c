@@ -12,8 +12,6 @@ enum custom_keycodes {
   HSV_0_255_255,
   HSV_74_255_255,
   HSV_169_255_255,
-  DE_LSPO,
-  DE_RSPC,
   ALT_TAB = SAFE_RANGE,
 };
 
