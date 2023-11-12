@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [2] = LAYOUT_voyager(
     RGB_TOG,        TOGGLE_LAYER_COLOR,HSV_152_255_255,     HSV_0_0_255,    RGB_VAD,            RGB_VAI,                KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_PGUP, 
-    KC_TRANSPARENT, DE_SS,             DE_ADIA,             DE_ODIA,        DE_UDIA,            DE_GRV,                 DE_AMPR,        DE_LBRC,        DE_RBRC,        DE_EURO,        KC_TRANSPARENT, KC_PGDOWN, 
+    KC_TRANSPARENT, DE_SS,             DE_ADIA,             DE_ODIA,        DE_UDIA,            DE_GRV,                 DE_AMPR,        DE_LBRC,        DE_RBRC,        DE_EURO,        KC_TRANSPARENT, KC_PGDN, 
     KC_TRANSPARENT, DE_CIRC,           DE_BSLS,             DE_PLUS,        DE_EQL,             DE_HASH,                DE_PIPE,        DE_LPRN,        DE_RPRN,        DE_PERC,        KC_TRANSPARENT, KC_HOME, 
     KC_TRANSPARENT, KC_TRANSPARENT,    KC_TRANSPARENT,      DE_ASTR,        KC_TRANSPARENT,     KC_TRANSPARENT,         DE_TILD,        DE_LCBR,        DE_RCBR,        DE_AT,          KC_TRANSPARENT, KC_END, 
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
