@@ -53,6 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  tap_dance_action_t *action;
+
   if (!process_custom_shift_keys(keycode, record)) { return false; }
 
   switch (keycode) {
@@ -80,6 +82,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_sethsv(0,0,255);
       }
       return false;
+    case TD(DANCE_0):
+    case TD(DANCE_1):
+        action = &tap_dance_actions[TD_INDEX(keycode)];
+        if (!record->event.pressed && action->state.count && !action->state.finished) {
+            tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+            tap_code16(tap_hold->tap);
+        }
   }
   return true;
 }
@@ -100,21 +109,6 @@ typedef struct {
     uint16_t hold;
     uint16_t held;
 } tap_dance_tap_hold_t;
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    tap_dance_action_t *action;
-
-    switch (keycode) {
-        case TD(DANCE_0):  // list all tap dance keycodes with tap-hold configurations
-        case TD(DANCE_1):  // list all tap dance keycodes with tap-hold configurations
-            action = &tap_dance_actions[TD_INDEX(keycode)];
-            if (!record->event.pressed && action->state.count && !action->state.finished) {
-                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
-                tap_code16(tap_hold->tap);
-            }
-    }
-    return true;
-}
 
 void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
