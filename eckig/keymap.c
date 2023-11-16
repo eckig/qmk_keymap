@@ -150,8 +150,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                   HSV hsv = {0, 255, 255};
                   if (layer == 0) {
                       hsv = {205, 10, 99};
+                  }
                   else if (layer == 1) {
                       hsv = {125, 5, 96};
+                  }
                   else if (layer == 2) {
                       hsv = {37, 12, 100};
                   }
