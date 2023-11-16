@@ -147,23 +147,17 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
                 if (index >= led_min && index < led_max && index != NO_LED && keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
 
-                  HSV hsv = {0, 255, 255};
                   switch (layer) {
                     case 0:
-                      hsv = HSV_SPRINGGREEN;
+                      rgblight_sethsv_at(HSV_SPRINGGREEN, index);
                       break;
                     case 1:
-                      hsv = HSV_TEAL;
+                      rgblight_sethsv_at(HSV_TEAL, index);
                       break;
                     case 2:
-                      hsv = HSV_WHITE;
+                      rgblight_sethsv_at(HSV_WHITE, index);
                       break;
                   }
-                  if (hsv.v > rgb_matrix_get_val()) {
-                      hsv.v = rgb_matrix_get_val();
-                  }
-                  RGB rgb = hsv_to_rgb(hsv);
-                  rgb_matrix_set_color(index, rgb.r, rgb.g, rgb.b);
                 }
             }
         }
