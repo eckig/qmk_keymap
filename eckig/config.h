@@ -3,6 +3,8 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 #define RGB_DISABLE_TIMEOUT 60000
+
+#undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
 #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 75
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
