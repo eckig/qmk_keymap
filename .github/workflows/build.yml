@@ -13,20 +13,12 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    container: qmkfm/qmk_cli
     steps:
       - uses: actions/checkout@v4
         with:
           # intentionally don't set it to "recursive" as zsa's submodules are managed via their Makefile.
           submodules: true
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11.x"
-          cache: pip
-          cache-dependency-path: .github/requirements.txt
-
-      - name: install CI python deps
-        run: pip install -r .github/requirements.txt
 
       - name: build keymap
         run: make build
