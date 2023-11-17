@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [1] = LAYOUT_voyager(
     KC_F1,          KC_F2,              KC_F3,              KC_F4,          KC_F5,              KC_F6,                  KC_F7,          KC_F8,    KC_F9,    KC_F10,   KC_F11,         KC_F12,
-    KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,         KC_TRANSPARENT, KC_7,     KC_8,     KC_9,     KC_RIGHT,       KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,         KC_TRANSPARENT, KC_7,     KC_8,     KC_9,     KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT, KC_TRANSPARENT,     KC_LEFT,                KC_TRANSPARENT, KC_4,     KC_5,     KC_6,     KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,     KC_DOWN,        KC_UP,              KC_RIGHT,               KC_TRANSPARENT, KC_1,     KC_2,     KC_3,     KC_TRANSPARENT, KC_TRANSPARENT,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_0
@@ -132,30 +132,28 @@ tap_dance_action_t tap_dance_actions[] = {
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
+    bool rgb_enabled = (bool) rgb_matrix_is_enabled();
 
-    if (layer >= 0) {
-        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
-            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+    for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+        for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
 
-                uint8_t index = g_led_config.matrix_co[row][col];
-                if (index >= led_min && index < led_max && index != NO_LED) {
-                    if(keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
-                      switch (layer) {
-                        case 0:
-                          rgb_matrix_set_color(index, RGB_TEAL);
-                          break;
-                        case 1:
-                          rgb_matrix_set_color(index, RGB_SPRINGGREEN);
-                          break;
-                        case 2:
-                          rgb_matrix_set_color(index, RGB_WHITE);
-                          break;
-                      }
-                    } else {
-                      rgb_matrix_set_color(index, 0, 0, 0);
-                    }
+            uint8_t index = g_led_config.matrix_co[row][col];
+            if (index >= led_min && index < led_max && index != NO_LED) {
+                if (rgb_enabled && keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
+                  switch (layer) {
+                    case 0:
+                      rgb_matrix_set_color(index, RGB_TEAL);
+                      break;
+                    case 1:
+                      rgb_matrix_set_color(index, RGB_SPRINGGREEN);
+                      break;
+                    case 2:
+                      rgb_matrix_set_color(index, RGB_WHITE);
+                      break;
+                  }
+                } else {
+                  rgb_matrix_set_color(index, 0, 0, 0);
                 }
-
             }
         }
     }
