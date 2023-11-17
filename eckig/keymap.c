@@ -130,25 +130,27 @@ tap_dance_action_t tap_dance_actions[] = {
     [DANCE_1] = ACTION_TAP_DANCE_TAP_HOLD(DE_EXLM, KC_RALT),
 };
 
+extern rgb_config_t rgb_matrix_config;
+
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer = get_highest_layer(layer_state);
-    bool rgb_enabled = (bool) rgb_matrix_is_enabled();
+    float f = (float) rgb_matrix_config.hsv.v / UINT8_MAX;
 
     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
 
             uint8_t index = g_led_config.matrix_co[row][col];
             if (index >= led_min && index < led_max && index != NO_LED) {
-                if (rgb_enabled && keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
+                if (keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
                   switch (layer) {
                     case 0:
-                      rgb_matrix_set_color(index, RGB_TEAL);
+                      rgb_matrix_set_color(index, 0, f * 128, f * 128);
                       break;
                     case 1:
-                      rgb_matrix_set_color(index, RGB_SPRINGGREEN);
+                      rgb_matrix_set_color(index, 0, f * 255, f * 127);
                       break;
                     case 2:
-                      rgb_matrix_set_color(index, RGB_WHITE);
+                      rgb_matrix_set_color(index, f * 255, f * 255, f * 255);
                       break;
                   }
                 } else {
