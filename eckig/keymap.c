@@ -7,10 +7,10 @@
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 
-#define LT1_ENTER  = LT(1,KC_ENTER)
-#define LT1_DELETE = LT(1,KC_DELETE)
-#define LT2_SPACE  = LT(2,KC_SPACE)
-#define LT2_BSPC   = LT(2,KC_BSPC)
+#define LT1_ENTER  LT(1,KC_ENTER)
+#define LT1_DELETE LT(1,KC_DELETE)
+#define LT2_SPACE  LT(2,KC_SPACE)
+#define LT2_BSPC   LT(2,KC_BSPC)
 
 enum custom_keycodes {
   ALT_TAB   = SAFE_RANGE,
