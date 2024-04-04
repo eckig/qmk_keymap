@@ -82,7 +82,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false;
       }
     break;
-    case MT_EXLM:
+    case MT_ALT_EXC:
       if (record->event.pressed && record->tap.count > 0) {
           tap_code16(DE_EXLM);
           return false;
