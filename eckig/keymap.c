@@ -2,6 +2,7 @@
 #include "version.h"
 #include "keymap_german.h"
 #include "features/custom_shift_keys.h"
+#include "features/achordion.h"
 
 // super alt-tab
 bool is_alt_tab_active = false;
