@@ -141,7 +141,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
         if (keycode > KC_TRNS) {
 
-          if(keycode == MT_CTL_ESC || keycode == MT_CTL_MIN || keycode == MT_ALT_DLR || keycode == MT_ALT_EXC) {
+          if(IS_QK_MOD_TAP(keycode)) {
             rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
           }
           else if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
