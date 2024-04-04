@@ -104,16 +104,6 @@ void matrix_scan_user(void) {
   }
 }
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
-  switch (keycode) {
-    case MT_CTL_ESC:
-    case MT_CTL_MIN:
-      return 150;
-    default:
-      return TAPPING_TERM;
-  }
-}
-
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t* record) {
   // If you quickly hold a tap-hold key after tapping it, the tap action is repeated. 
   switch (keycode) {
@@ -124,6 +114,18 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t* record) {
       return QUICK_TAP_TERM;  // Enable key repeating.
     default:
       return 0;  // Otherwise, force hold and disable key repeating.
+  }
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+  switch (mod) {
+    case MOD_LSFT:
+    case MOD_RSFT:
+    case MOD_LCTL:
+    case MOD_RCTL:
+      return true;  // Eagerly apply Shift and Ctrl mods.
+    default:
+      return false;
   }
 }
 
