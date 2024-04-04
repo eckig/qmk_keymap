@@ -138,8 +138,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             if (index >= led_min && index < led_max && index != NO_LED) {
                 uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
                 if (keycode > KC_TRNS) {
-                  if(keycode == MT_CTL_ESC || keycode == MT_CTL_MIN || keycode == MT_ALT_DLR || keycode == MT_ALT_EXC ||
-                     keycode == LT1_ENTER || keycode == LT1_DELETE || keycode == LT2_SPACE || keycode == LT2_BSPC) {
+                  if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
+                      rgb_matrix_set_color(index, 0, f * 255, f * 127);
+                  }
+                  if(keycode == LT2_SPACE || keycode == LT2_BSPC) {
+                      rgb_matrix_set_color(index, 0, f * 128, f * 128);
+                  }
+                  if(keycode == MT_CTL_ESC || keycode == MT_CTL_MIN || keycode == MT_ALT_DLR || keycode == MT_ALT_EXC) {
                       rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
                   }
                   else {
