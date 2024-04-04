@@ -101,18 +101,28 @@ void matrix_scan_user(void) {
   }
 }
 
-// config for "Hold On Other Key Press"
+// config for layer tap
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case LT1_ENTER:
     case LT1_DELETE:
     case LT2_SPACE:
     case LT2_BSPC:
-      // Immediately select the hold action when another key is pressed.
-      return true;
+      return true;  // Immediately select the hold action when another key is pressed.
     default:
-      // Do not select the hold action when another key is pressed.
-      return false;
+      return false; // Do not select the hold action when another key is pressed.
+  }
+}
+// config for mod tap
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case MT_CTL_ESC:
+    case MT_CTL_MIN:
+    case MT_ALT_DLR:
+    case MT_ALT_EXC:
+      return true;  // Immediately select the hold action when another key is pressed.
+    default:
+      return false; // Do not select the hold action when another key is pressed.
   }
 }
 
@@ -126,17 +136,24 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
             uint8_t index = g_led_config.matrix_co[row][col];
             if (index >= led_min && index < led_max && index != NO_LED) {
-                if (keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
-                  switch (layer) {
-                    case 0:
-                      rgb_matrix_set_color(index, 0, f * 128, f * 128);
-                      break;
-                    case 1:
-                      rgb_matrix_set_color(index, 0, f * 255, f * 127);
-                      break;
-                    case 2:
-                      rgb_matrix_set_color(index, f * 255, f * 255, f * 255);
-                      break;
+                uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
+                if (keycode > KC_TRNS) {
+                  if(keycode == MT_CTL_ESC || keycode == MT_CTL_MIN || keycode == MT_ALT_DLR || keycode == MT_ALT_EXC ||
+                     keycode == LT1_ENTER || keycode == LT1_DELETE keycode == LT2_SPACE || keycode == LT2_BSPC) {
+                      rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
+                  }
+                  else {
+                    switch (layer) {
+                      case 0:
+                        rgb_matrix_set_color(index, f * 255, f * 255, f * 255);
+                        break;
+                      case 1:
+                        rgb_matrix_set_color(index, 0, f * 255, f * 127);
+                        break;
+                      case 2:
+                        rgb_matrix_set_color(index, 0, f * 128, f * 128);
+                        break;
+                    }
                   }
                 } else {
                   rgb_matrix_set_color(index, 0, 0, 0);
