@@ -4,7 +4,9 @@
 */
 #define RGB_DISABLE_TIMEOUT 60000
 
+// caps word
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 3000
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
 #define FIRMWARE_VERSION u8"XYMA4/3dYjw"
@@ -12,7 +14,10 @@
 #define RAW_USAGE_ID 0x61
 #define LAYER_STATE_8BIT
 
-#define TAPPING_TERM 250
+// Tap-hold configuration for home row mods.
+#define TAPPING_TERM 175
+#define TAPPING_TERM_PER_KEY
+#define QUICK_TAP_TERM_PER_KEY
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 #define PERMISSIVE_HOLD_PER_KEY
 

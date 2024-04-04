@@ -115,6 +115,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
       return false; // Do not select the hold action when another key is pressed.
   }
 }
+
 // config for mod tap
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -127,6 +128,29 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
       return true;  // Immediately select the hold action when another key is pressed.
     default:
       return false; // Do not select the hold action when another key is pressed.
+  }
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case MT_CTL_ESC:
+    case MT_CTL_MIN:
+      return 100;
+    default:
+      return TAPPING_TERM;
+  }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t* record) {
+  // If you quickly hold a tap-hold key after tapping it, the tap action is repeated. 
+  switch (keycode) {
+    case LT1_ENTER:
+    case LT1_DELETE:
+    case LT2_SPACE:
+    case LT2_BSPC:
+      return QUICK_TAP_TERM;  // Enable key repeating.
+    default:
+      return 0;  // Otherwise, force hold and disable key repeating.
   }
 }
 
