@@ -21,6 +21,8 @@ enum custom_keycodes {
 #define MT_CTL_MIN MT(MOD_RCTL, DE_MINS)
 #define MT_ALT_DLR MT(MOD_LALT, MT_DLR)
 #define MT_ALT_EXC MT(MOD_RALT, MT_EXLM)
+#define MT_SHIFT_U MT(MOD_LSFT, KC_U)
+#define MT_SHIFT_H MT(MOD_RSFT, KC_H)
 
 const custom_shift_key_t custom_shift_keys[] = {
   {DE_SCLN, DE_COLN}, // ; :
@@ -33,24 +35,24 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    MT_ALT_DLR,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_LGUI,                      KC_PSCR,  KC_NO,   KC_NO,   KC_NO,   ALT_TAB, MT_ALT_EXC,
-    KC_TAB,         DE_SCLN,  KC_COMM,  KC_DOT,   KC_P,     DE_Y,                         KC_F,     KC_G,    KC_C,    KC_R,    KC_L,    DE_SLSH,
-    MT_CTL_ESC,     KC_A,     KC_O,     KC_E,     KC_U,     KC_I,                         KC_D,     KC_H,    KC_T,    KC_N,    KC_S,    MT_CTL_MIN,
-    KC_LSFT,        DE_QUOT,  KC_Q,     KC_J,     KC_K,     KC_X,                         KC_B,     KC_M,    KC_W,    KC_V,    DE_Z,    KC_RSFT,
+    MT_ALT_DLR,     KC_F5,    KC_F6,    KC_F7,    KC_F8,      KC_NO,                 KC_PSCR,  KC_NO,      KC_NO,   KC_NO,   ALT_TAB, MT_ALT_EXC,
+    KC_TAB,         DE_SCLN,  KC_COMM,  KC_DOT,   KC_P,       DE_Y,                  KC_F,     KC_G,       KC_C,    KC_R,    KC_L,    DE_SLSH,
+    MT_CTL_ESC,     KC_A,     KC_O,     KC_E,     MT_SHIFT_U, KC_I,                  KC_D,     MT_SHIFT_H, KC_T,    KC_N,    KC_S,    MT_CTL_MIN,
+    KC_LGUI,        DE_QUOT,  KC_Q,     KC_J,     KC_K,       KC_X,                  KC_B,     KC_M,       KC_W,    KC_V,    DE_Z,    KC_RGUI,
                                                     LT2_BSPC,       LT1_DELETE,                 LT1_ENTER,      LT2_SPACE
   ),
   [1] = LAYOUT_voyager(
-    KC_F1,          KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,                        KC_F7,    KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-    KC_TRANSPARENT, KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,                        KC_NO,    KC_7,    KC_8,    KC_9,    KC_NO,   KC_TRANSPARENT,
-    KC_TRANSPARENT, DE_ADIA,  DE_ODIA,  KC_NO,    DE_UDIA,  KC_NO,                        KC_NO,    KC_4,    KC_5,    KC_6,    DE_SS,   KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_NO,    KC_NO,    KC_DOWN,  KC_UP,    KC_NO,                        KC_NO,    KC_1,    KC_2,    KC_3,    KC_NO,   KC_TRANSPARENT,
+    KC_F1,          KC_F2,    KC_F3,    KC_F4,    KC_F5,      KC_F6,                 KC_F7,    KC_F8,      KC_F9,   KC_F10,  KC_F11,  KC_F12,
+    KC_TRANSPARENT, KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,                 KC_NO,    KC_7,       KC_8,    KC_9,    KC_NO,   KC_TRANSPARENT,
+    KC_TRANSPARENT, DE_ADIA,  DE_ODIA,  KC_NO,    DE_UDIA,    KC_NO,                 KC_NO,    KC_4,       KC_5,    KC_6,    DE_SS,   KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_NO,    KC_NO,    KC_DOWN,  KC_UP,      KC_NO,                 KC_NO,    KC_1,       KC_2,    KC_3,    KC_NO,   KC_TRANSPARENT,
                                                     KC_LEFT,        KC_RIGHT,                   KC_TRANSPARENT, KC_0
   ),
   [2] = LAYOUT_voyager(
-    RGB_TOG,        KC_NO,    KC_NO,    KC_NO,    RGB_VAD,  RGB_VAI,                      KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-    KC_TRANSPARENT, DE_DEG,   KC_NO,    KC_NO,    KC_NO,    DE_GRV,                       DE_AMPR,  DE_LBRC, DE_RBRC, DE_EURO, KC_NO,   KC_TRANSPARENT,
-    KC_TRANSPARENT, DE_CIRC,  DE_BSLS,  DE_PLUS,  DE_EQL,   DE_HASH,                      DE_PIPE,  DE_LPRN, DE_RPRN, DE_PERC, KC_NO,   KC_TRANSPARENT,
-    KC_TRANSPARENT, DE_SECT,  KC_NO,    DE_ASTR,  KC_NO,    KC_NO,                        DE_TILD,  DE_LCBR, DE_RCBR, DE_AT,   KC_NO,   KC_TRANSPARENT,
+    RGB_TOG,        KC_NO,    KC_NO,    KC_NO,    RGB_VAD,    RGB_VAI,               KC_NO,    KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_TRANSPARENT, DE_DEG,   KC_NO,    KC_NO,    KC_NO,      DE_GRV,                DE_AMPR,  DE_LBRC,    DE_RBRC, DE_EURO, KC_NO,   KC_TRANSPARENT,
+    KC_TRANSPARENT, DE_CIRC,  DE_BSLS,  DE_PLUS,  DE_EQL,     DE_HASH,               DE_PIPE,  DE_LPRN,    DE_RPRN, DE_PERC, KC_NO,   KC_TRANSPARENT,
+    KC_TRANSPARENT, DE_SECT,  KC_NO,    DE_ASTR,  KC_NO,      KC_NO,                 DE_TILD,  DE_LCBR,    DE_RCBR, DE_AT,   KC_NO,   KC_TRANSPARENT,
                                                     KC_TRANSPARENT, KC_TRANSPARENT,             KC_HOME,        KC_END
   ),
 };
@@ -120,6 +122,8 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     case MT_CTL_MIN:
     case MT_ALT_DLR:
     case MT_ALT_EXC:
+    case MT_SHIFT_U:
+    case MT_SHIFT_H:
       return true;  // Immediately select the hold action when another key is pressed.
     default:
       return false; // Do not select the hold action when another key is pressed.
@@ -139,25 +143,23 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
       if (index >= led_min && index < led_max && index != NO_LED) {
 
         uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
-        if (keycode > KC_TRNS) {
-
-          if(IS_QK_MOD_TAP(keycode)) {
-            rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
-          }
-          else if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
-            rgb_matrix_set_color(index, 0, f * 255, f * 127);
-          }
-          else if(keycode == LT2_SPACE || keycode == LT2_BSPC || layer == 2) {
-            rgb_matrix_set_color(index, 0, f * 128, f * 128);
-          }
-          else if(layer == 0) {
-            rgb_matrix_set_color(index, f * 255, f * 255, f * 255);
-          }
-          else if(layer == 1) {
-            rgb_matrix_set_color(index, 0, f * 255, f * 127);
-          }
-        } else {
+        if (keycode <= KC_TRNS) {
           rgb_matrix_set_color(index, 0, 0, 0);
+        }
+        else if(IS_QK_MOD_TAP(keycode)) {
+          rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
+        }
+        else if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
+          rgb_matrix_set_color(index, 0, f * 255, f * 127);
+        }
+        else if(keycode == LT2_SPACE || keycode == LT2_BSPC || layer == 2) {
+          rgb_matrix_set_color(index, 0, f * 128, f * 128);
+        }
+        else if(layer == 0) {
+          rgb_matrix_set_color(index, f * 255, f * 255, f * 255);
+        }
+        else if(layer == 1) {
+          rgb_matrix_set_color(index, 0, f * 255, f * 127);
         }
       }
     }
