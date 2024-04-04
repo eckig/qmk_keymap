@@ -116,8 +116,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t* record) {
 
 bool achordion_eager_mod(uint8_t mod) {
   switch (mod) {
-    // case MOD_LSFT:
-    // case MOD_RSFT:
+    case MOD_LSFT:
+    case MOD_RSFT:
     case MOD_LCTL:
     case MOD_RCTL:
       return true;  // Eagerly apply Shift and Ctrl mods.
