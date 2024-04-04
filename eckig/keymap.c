@@ -60,9 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  if (!process_custom_shift_keys(keycode, record)) {
-    return false;
-  }
+  if (!process_achordion(keycode, record)) { return false; }
+  if (!process_custom_shift_keys(keycode, record)) { return false; }
 
   switch (keycode) {
     case ALT_TAB:
@@ -95,6 +94,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_scan_user(void) {
+  achordion_task();
   if (is_alt_tab_active) {
     if (timer_elapsed(alt_tab_timer) > 600) {
       unregister_code(KC_LALT);
@@ -103,39 +103,11 @@ void matrix_scan_user(void) {
   }
 }
 
-// config for layer tap
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case LT1_ENTER:
-    case LT1_DELETE:
-    case LT2_SPACE:
-    case LT2_BSPC:
-      return true;  // Immediately select the hold action when another key is pressed.
-    default:
-      return false; // Do not select the hold action when another key is pressed.
-  }
-}
-
-// config for mod tap
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case MT_CTL_ESC:
-    case MT_CTL_MIN:
-    case MT_ALT_DLR:
-    case MT_ALT_EXC:
-    case MT_SHIFT_U:
-    case MT_SHIFT_H:
-      return true;  // Immediately select the hold action when another key is pressed.
-    default:
-      return false; // Do not select the hold action when another key is pressed.
-  }
-}
-
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case MT_CTL_ESC:
     case MT_CTL_MIN:
-      return 100;
+      return 150;
     default:
       return TAPPING_TERM;
   }

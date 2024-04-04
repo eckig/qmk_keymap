@@ -9,3 +9,4 @@ CAPS_WORD_ENABLE = yes
 TAP_DANCE_ENABLE = no
 SRC = matrix.c
 SRC += features/custom_shift_keys.c
+SRC += features/achordion.c
