@@ -38,7 +38,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    MT_ALT_DLR, KC_F5,   KC_F6,   KC_F7,   KC_F8,      KC_NO,                 KC_PSCR, KC_NO,      KC_NO,   KC_NO,   ALT_TAB, MT_ALT_EXC,
+    MT_ALT_DLR, KC_F5,   KC_F6,   KC_F7,   KC_F8,      KC_NO,                 KC_PSCR, KC_NO,      KC_NO,   KC_NO,   KC_NO,   MT_ALT_EXC,
     KC_TAB,     DE_SCLN, KC_COMM, KC_DOT,  KC_P,       DE_Y,                  KC_F,    KC_G,       KC_C,    KC_R,    KC_L,    DE_SLSH,
     MT_CTL_ESC, KC_A,    KC_O,    LT3_E,   MT_SHIFT_U, KC_I,                  KC_D,    MT_SHIFT_H, LT3_T,   KC_N,    KC_S,    MT_CTL_MIN,
     KC_LGUI,    DE_QUOT, KC_Q,    KC_J,    KC_K,       KC_X,                  KC_B,    KC_M,       KC_W,    KC_V,    DE_Z,    KC_RGUI,
@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [3] = LAYOUT_voyager(
     KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,               KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,               KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,    DE_ADIA, DE_ODIA, KC_TRNS, DE_UDIA,    KC_TRNS,               KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, DE_SS,   KC_TRNS,
+    KC_TRNS,    DE_ADIA, DE_ODIA, KC_TRNS, DE_UDIA,    KC_TRNS,               KC_TRNS, KC_TRNS,    ALT_TAB, KC_TRNS, DE_SS,   KC_TRNS,
     KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,               KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                                  KC_LEFT,  KC_RIGHT,                   KC_HOME,   KC_END
   ),
