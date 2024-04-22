@@ -5,7 +5,6 @@
 #define RGB_DISABLE_TIMEOUT 60000
 
 // caps word
-#define CAPS_WORD_ENABLE = yes
 #define CAPS_WORD_IDLE_TIMEOUT 3000
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
