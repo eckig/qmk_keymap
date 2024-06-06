@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  KC_LEFT,  KC_RIGHT,                   ALT_TAB,   KC_0
   ),
   [2] = LAYOUT_voyager(
-    RGB_TOG,    KC_NO,   KC_NO,   KC_NO,   RGB_VAD,    RGB_VAI,               KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    KC_TRNS,    KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,                 KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
     KC_TRNS,    DE_DEG,  KC_NO,   KC_NO,   KC_NO,      DE_GRV,                DE_AMPR, DE_LBRC,    DE_RBRC, DE_EURO, KC_NO,   KC_TRNS,
     KC_TRNS,    DE_CIRC, DE_BSLS, DE_PLUS, DE_EQL,     DE_HASH,               DE_PIPE, DE_LPRN,    DE_RPRN, DE_PERC, KC_NO,   KC_TRNS,
     KC_TRNS,    DE_SECT, KC_NO,   DE_ASTR, KC_NO,      KC_NO,                 DE_TILD, DE_LCBR,    DE_RCBR, DE_AT,   KC_NO,   KC_TRNS,
@@ -128,3 +128,39 @@ bool achordion_eager_mod(uint8_t mod) {
   }
 }
 
+extern rgb_config_t rgb_matrix_config;
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+
+  uint8_t layer = get_highest_layer(layer_state);
+  float f = (float) rgb_matrix_config.hsv.v / UINT8_MAX;
+
+  for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+    for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+
+      uint8_t index = g_led_config.matrix_co[row][col];
+      if (index >= led_min && index < led_max && index != NO_LED) {
+
+        uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
+        if (keycode <= KC_TRNS) {
+          rgb_matrix_set_color(index, 0, 0, 0);
+        }
+        else if(IS_QK_MOD_TAP(keycode) || keycode == QK_REP) {
+          rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
+        }
+        else if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
+          rgb_matrix_set_color(index, 0, f * 255, f * 127);
+        }
+        else if(keycode == LT2_SPACE || keycode == LT2_BSPC || layer == 2) {
+          rgb_matrix_set_color(index, 0, f * 128, f * 128);
+        }
+        else if(layer == 0) {
+          rgb_matrix_set_color(index, 0, 0, 0);
+        }
+        else {
+          rgb_matrix_set_color(index, 0, f * 255, f * 127);
+        }
+      }
+    }
+  }
+  return false;
+}
