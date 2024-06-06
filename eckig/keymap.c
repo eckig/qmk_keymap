@@ -128,39 +128,3 @@ bool achordion_eager_mod(uint8_t mod) {
   }
 }
 
-extern rgb_config_t rgb_matrix_config;
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-
-  uint8_t layer = get_highest_layer(layer_state);
-  float f = (float) rgb_matrix_config.hsv.v / UINT8_MAX;
-
-  for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
-    for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
-
-      uint8_t index = g_led_config.matrix_co[row][col];
-      if (index >= led_min && index < led_max && index != NO_LED) {
-
-        uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
-        if (keycode <= KC_TRNS) {
-          rgb_matrix_set_color(index, 0, 0, 0);
-        }
-        else if(IS_QK_MOD_TAP(keycode)) {
-          rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
-        }
-        else if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
-          rgb_matrix_set_color(index, 0, f * 255, f * 127);
-        }
-        else if(keycode == LT2_SPACE || keycode == LT2_BSPC || layer == 2) {
-          rgb_matrix_set_color(index, 0, f * 128, f * 128);
-        }
-        else if(layer == 0) {
-          rgb_matrix_set_color(index, 0, 0, 0);
-        }
-        else {
-          rgb_matrix_set_color(index, 0, f * 255, f * 127);
-        }
-      }
-    }
-  }
-  return false;
-}

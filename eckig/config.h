@@ -2,9 +2,7 @@
   Set any config.h overrides for your specific keymap here.
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
-#define RGB_DISABLE_TIMEOUT 60000
 
-// caps word
 #define CAPS_WORD_IDLE_TIMEOUT 3000
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
@@ -18,12 +16,15 @@
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
 
+#define RGB_DISABLE_TIMEOUT 60000
 #define RGB_MATRIX_STARTUP_SPD 60
+#define RGB_MATRIX_SLEEP // turn off effects when suspended
+#define RGB_MATRIX_DEFAULT_VAL 60
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_BREATHING
 
 #undef ENABLE_RGB_MATRIX_ALPHAS_MODS
 #undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
 #undef ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT
-#undef ENABLE_RGB_MATRIX_BREATHING
 #undef ENABLE_RGB_MATRIX_BAND_SAT
 #undef ENABLE_RGB_MATRIX_BAND_VAL
 #undef ENABLE_RGB_MATRIX_BAND_PINWHEEL_SAT
