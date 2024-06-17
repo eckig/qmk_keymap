@@ -153,9 +153,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         else if(keycode == LT2_SPACE || keycode == LT2_BSPC || layer == 2) {
           rgb_matrix_set_color(index, 0, f * 128, f * 128);
         }
-        else if(layer == 0) {
-          rgb_matrix_set_color(index, 0, 0, 0);
-        }
         else {
           rgb_matrix_set_color(index, 0, f * 255, f * 127);
         }
