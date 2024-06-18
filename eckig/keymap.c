@@ -46,14 +46,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F1,      KC_F2,   KC_F3,   KC_F4,   KC_F5,      KC_F6,                 KC_F7,   KC_F8,      KC_F9,   KC_F10,  KC_F11,  KC_F12,
     KC_TRNS,    KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,                 KC_NO,   KC_7,       KC_8,    KC_9,    KC_NO,   KC_TRNS,
     KC_TRNS,    DE_ADIA, DE_ODIA, DE_UDIA, DE_SS,      CW_TOGG,               KC_NO,   KC_4,       KC_5,    KC_6,    KC_NO,   KC_TRNS,
-    KC_TRNS,    KC_NO,   KC_NO,   KC_DOWN, KC_UP,      KC_NO,                 KC_NO,   KC_1,       KC_2,    KC_3,    KC_NO,   KC_TRNS,
+    KC_TRNS,    KC_NO,   KC_NO,   KC_DOWN, KC_UP,      KC_NO,                 KC_NO,   KC_1,       KC_2,    KC_3,    KC_NO,   QK_AREP,
                                                  KC_LEFT,  KC_RIGHT,                   ALT_TAB,   KC_0
   ),
   [2] = LAYOUT_voyager(
     KC_TRNS,    KC_NO,   KC_NO,   KC_NO,   RGB_VAD,    RGB_VAI,               KC_NO,   KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
     KC_TRNS,    DE_DEG,  KC_NO,   KC_NO,   KC_NO,      DE_GRV,                DE_AMPR, DE_LBRC,    DE_RBRC, DE_EURO, KC_NO,   KC_TRNS,
     KC_TRNS,    DE_CIRC, DE_BSLS, DE_PLUS, DE_EQL,     DE_HASH,               DE_PIPE, DE_LPRN,    DE_RPRN, DE_PERC, KC_NO,   KC_TRNS,
-    KC_TRNS,    DE_SECT, KC_NO,   DE_ASTR, KC_NO,      KC_NO,                 DE_TILD, DE_LCBR,    DE_RCBR, DE_AT,   KC_NO,   KC_TRNS,
+    KC_TRNS,    DE_SECT, KC_NO,   DE_ASTR, KC_NO,      KC_NO,                 DE_TILD, DE_LCBR,    DE_RCBR, DE_AT,   KC_NO,   QK_AREP,
                                                  KC_LEFT,  KC_RIGHT,                   KC_HOME,   KC_END
   ),
 };
@@ -102,6 +102,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   return true;
+}
+
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+  if ((mods & MOD_MASK_CTRL)) {
+    switch (keycode) {
+      case KC_A: return C(KC_C);  // Ctrl+A -> Ctrl+C
+      case KC_C: return C(KC_V);  // Ctrl+C -> Ctrl+V
+      case DE_Y: return C(DE_Z);  // Ctrl+Y -> Ctrl+Z
+      case DE_Z: return C(DE_Y);  // Ctrl+Z -> Ctrl+Y
+    }
+  }
+  return KC_TRNS;
 }
 
 void matrix_scan_user(void) {
