@@ -64,6 +64,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_custom_shift_keys(keycode, record)) { return false; }
 
   switch (keycode) {
+
     case ALT_TAB:
       if (record->event.pressed) {
         if (!is_alt_tab_active) {
@@ -83,13 +84,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false;
       }
     break;
+
     case MT_ALT_EXC:
       if (record->event.pressed && record->tap.count > 0) {
           tap_code16(DE_EXLM);
           return false;
       }
     break;
+
+    case MT_CTL_MIN:
+      if(is_caps_word_on()) {
+        tap_code16(DE_UNDS);
+      }
+    break;
+
   }
+
   return true;
 }
 
