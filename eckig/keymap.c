@@ -95,6 +95,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MT_CTL_MIN:
       if(is_caps_word_on()) {
         tap_code16(DE_UNDS);
+        return false;
       }
     break;
 
