@@ -15,7 +15,6 @@
 #define TAPPING_TERM 175
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
-#define ACHORDION_STREAK
 
 #define RGB_DISABLE_TIMEOUT 60000
 #define RGB_MATRIX_SLEEP // turn off effects when suspended
