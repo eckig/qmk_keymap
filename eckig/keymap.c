@@ -175,13 +175,13 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         if (keycode <= KC_TRNS) {
           rgb_matrix_set_color(index, 0, 0, 0);
         }
-        else if(IS_QK_MOD_TAP(keycode) || keycode == QK_REP) {
+        else if(IS_QK_MOD_TAP(keycode) || keycode == QK_REP || keycode == LT3_C ) {
           rgb_matrix_set_color(index, f * 255, f * 136, f * 0);
         }
         else if(keycode == LT1_ENTER || keycode == LT1_DELETE) {
           rgb_matrix_set_color(index, 0, f * 255, f * 127);
         }
-        else if(keycode == LT2_SPACE || keycode == LT2_BSPC || keycode == LT3_C || layer == 2) {
+        else if(keycode == LT2_SPACE || keycode == LT2_BSPC || layer > 1) {
           rgb_matrix_set_color(index, 0, f * 128, f * 128);
         }
         else {
