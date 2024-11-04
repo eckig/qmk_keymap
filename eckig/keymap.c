@@ -12,6 +12,7 @@ enum custom_keycodes {
   ALT_TAB = SAFE_RANGE,
   MT_DLR  = SAFE_RANGE + 1,
   MT_EXLM = SAFE_RANGE + 2,
+  DEMO    = SAFE_RANGE + 3,
 };
 
 #define LT1_ENTER  LT(1,KC_ENTER)
@@ -37,7 +38,7 @@ uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    MT_ALT_DLR, KC_F5,   KC_F6,   KC_F7,   KC_F8,      KC_NO,                 KC_PSCR, KC_NO,      KC_NO,   KC_NO,   KC_NO,   MT_ALT_EXC,
+    MT_ALT_DLR, KC_F5,   KC_F6,   KC_F7,   KC_F8,      KC_NO,                 KC_PSCR, DEMO,       KC_NO,   KC_NO,   KC_NO,   MT_ALT_EXC,
     KC_TAB,     DE_SCLN, KC_COMM, KC_DOT,  KC_P,       DE_Y,                  KC_F,    KC_G,       LT3_C,   KC_R,    KC_L,    DE_SLSH,
     MT_CTL_ESC, KC_A,    KC_O,    KC_E,    MT_SHIFT_U, KC_I,                  KC_D,    MT_SHIFT_H, KC_T,    KC_N,    KC_S,    MT_CTL_MIN,
     KC_LGUI,    DE_QUOT, KC_Q,    KC_J,    KC_K,       KC_X,                  KC_B,    KC_M,       KC_W,    KC_V,    DE_Z,    QK_REP,
@@ -104,6 +105,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if(record->event.pressed && is_caps_word_on()) {
         tap_code16(DE_UNDS);
         return false;
+      }
+    break;
+
+    case DEMO:
+      if (record->event.pressed) {
+        SEND_STRING("admin" SS_TAP(KC_TAB) SS_DELAY(50) "Admin#123");
       }
     break;
 
