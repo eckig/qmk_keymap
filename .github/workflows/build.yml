@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
     steps:
       - uses: actions/checkout@v4
