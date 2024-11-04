@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "keymap_german.h"
+#include "sendstring_german.h"
 #include "features/custom_shift_keys.h"
 #include "features/achordion.h"
 
@@ -110,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case DEMO:
       if (record->event.pressed) {
-        SEND_STRING("admin\tAdmin#123");
+        SEND_STRING("admin\tAdmin#123\n");
       }
     break;
 
