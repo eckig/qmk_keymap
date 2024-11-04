@@ -110,7 +110,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case DEMO:
       if (record->event.pressed) {
-        SEND_STRING("admin" SS_TAP(KC_TAB) SS_DELAY(50) "Admin#123");
+        SEND_STRING("admin\tAdmin#123");
       }
     break;
 
