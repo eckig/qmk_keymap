@@ -180,7 +180,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
       if (index >= led_min && index < led_max && index != NO_LED) {
 
         uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col,row});
-        if (keycode <= KC_TRNS) {
+        if (layer <= 0 || keycode <= KC_TRNS) {
           rgb_matrix_set_color(index, 0, 0, 0);
         }
         else if(IS_QK_MOD_TAP(keycode) || keycode == QK_REP || keycode == LT3_C ) {
