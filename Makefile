@@ -9,9 +9,8 @@ qmk_setup:
 	make -C qmk_firmware git-submodules
 	cd qmk_firmware && qmk setup $(QMK_REPO) -b $(QMK_BRANCH) -y
 
-qmk_firmware/keyboards/voyager/keymaps/eckig: eckig qmk_setup
+keyboards/voyager/keymaps/eckig: eckig qmk_setup
 	rm -rf "$@"
-	mkdir "$@"
 	cp -r "$<" "$@"
 
 qmk_firmware/.build/voyager.bin: eckig qmk_setup
