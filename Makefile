@@ -11,6 +11,7 @@ qmk_setup:
 
 qmk_firmware/keyboards/voyager/keymaps/eckig: eckig qmk_setup
 	rm -rf "$@"
+	mddir "$@"
 	cp -r "$<" "$@"
 
 qmk_firmware/.build/voyager.bin: eckig qmk_setup
