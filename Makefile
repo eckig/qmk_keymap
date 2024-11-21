@@ -5,7 +5,7 @@ QMK_BRANCH ?= firmware24
 build: qmk_setup
 	rm -rf qmk_firmware/keyboards/zsa/voyager/keymaps/eckig
 	cp -r eckig qmk_firmware/keyboards/zsa/voyager/keymaps/eckig
-	make -C qmk_firmware voyager:eckig
+	make -C qmk_firmware zsa:voyager:eckig
 
 .PHONY: qmk_setup
 qmk_setup:
