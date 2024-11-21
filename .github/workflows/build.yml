@@ -21,6 +21,9 @@ jobs:
           # intentionally don't set it to "recursive" as zsa's submodules are managed via their Makefile.
           submodules: true
 
+      - name: install dependencies
+        run: /usr/bin/python3 -m pip install -r /__w/qmk_keymap/qmk_keymap/qmk_firmware/requirements.txt
+
       - name: copy keymap
         run: |
           cp -r eckig qmk_firmware/keyboards/zsa/voyager/keymaps/eckig
