@@ -3,8 +3,8 @@ QMK_BRANCH ?= firmware24
 
 .PHONY: build
 build: qmk_setup
-	rm -rf qmk_firmware/keyboards/voyager/keymaps/eckig
-	cp -r eckig qmk_firmware/keyboards/voyager/keymaps/eckig
+	rm -rf qmk_firmware/keyboards/zsa/voyager/keymaps/eckig
+	cp -r eckig qmk_firmware/keyboards/zsa/voyager/keymaps/eckig
 	make -C qmk_firmware voyager:eckig
 
 .PHONY: qmk_setup
