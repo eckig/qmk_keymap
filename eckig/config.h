@@ -2,23 +2,20 @@
   Set any config.h overrides for your specific keymap here.
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
-
 #define CAPS_WORD_IDLE_TIMEOUT 3000
-
-#define USB_SUSPEND_WAKEUP_DELAY 0
-#define FIRMWARE_VERSION u8"XYMA4/3dYjw"
-#define RAW_USAGE_PAGE 0xFF60
-#define RAW_USAGE_ID 0x61
-#define LAYER_STATE_8BIT
 
 // Tap-hold configuration for home row mods.
 #define TAPPING_TERM 175
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM_PER_KEY
 
-#define RGB_DISABLE_TIMEOUT 60000
-#define RGB_MATRIX_SLEEP // turn off effects when suspended
-#define RGB_MATRIX_DEFAULT_VAL 60
+#undef RGB_MATRIX_TIMEOUT
+#define RGB_MATRIX_TIMEOUT 60000
+
+#define USB_SUSPEND_WAKEUP_DELAY 0
+#define LAYER_STATE_8BIT
+
+#define RGB_MATRIX_STARTUP_SPD 60
 
 #undef ENABLE_RGB_MATRIX_ALPHAS_MODS
 #undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
